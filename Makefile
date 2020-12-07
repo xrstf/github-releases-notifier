@@ -4,7 +4,7 @@ BIN := bin
 EXECUTABLE := github-releases-notifier
 
 PWD := $(shell pwd)
-VERSION := $(shell cat VERSION)
+VERSION := $(shell git log -1 --format=%h)
 SHA := $(shell cat COMMIT 2>/dev/null || git rev-parse --short=8 HEAD)
 DATE := $(shell date -u '+%FT%T%z')
 
