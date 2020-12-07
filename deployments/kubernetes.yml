@@ -10,6 +10,9 @@ spec:
       maxSurge: 0
       maxUnavailable: 1
     type: RollingUpdate
+  selector:
+    matchLabels:
+      app: github-releases-notifier
   template:
     metadata:
       labels:
