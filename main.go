@@ -9,8 +9,7 @@ import (
 	"github.com/alexflint/go-arg"
 	"github.com/go-kit/kit/log"
 	"github.com/go-kit/kit/log/level"
-	"github.com/joho/godotenv"
-	githubql "github.com/shurcooL/githubql"
+	"github.com/shurcooL/githubv4"
 	"golang.org/x/oauth2"
 )
 
@@ -30,8 +29,6 @@ func (c Config) Token() *oauth2.Token {
 }
 
 func main() {
-	_ = godotenv.Load()
-
 	c := Config{
 		Interval: time.Hour,
 		LogLevel: "info",
@@ -39,10 +36,7 @@ func main() {
 	arg.MustParse(&c)
 
 	logger := log.NewJSONLogger(log.NewSyncWriter(os.Stdout))
-	logger = log.With(logger,
-		"ts", log.DefaultTimestampUTC,
-		"caller", log.Caller(5),
-	)
+	logger = log.With(logger, "time", log.DefaultTimestampUTC)
 
 	// level.SetKey("severity")
 	switch strings.ToLower(c.LogLevel) {
@@ -65,7 +59,7 @@ func main() {
 	client := oauth2.NewClient(context.Background(), tokenSource)
 	checker := &Checker{
 		logger: logger,
-		client: githubql.NewClient(client),
+		client: githubv4.NewClient(client),
 	}
 
 	// TODO: releases := make(chan Repository, len(c.Repositories))
