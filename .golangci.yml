@@ -1,0 +1,25 @@
+run:
+  modules-download-mode: readonly
+  deadline: 5m
+
+linters:
+  disable-all: true
+  enable:
+    - golint
+    - govet
+    - gofmt
+    - structcheck
+    - varcheck
+    - interfacer
+    - unconvert
+    - ineffassign
+    - goconst
+    - gocyclo
+    - misspell
+    - gosimple
+    - unused
+    - errcheck
+    - deadcode
+    - bodyclose
+    - gocritic
+    - staticcheck

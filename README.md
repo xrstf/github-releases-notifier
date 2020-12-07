@@ -22,7 +22,7 @@ $ docker run \
   --rm \
   -e GITHUB_TOKEN=XXX \
   -e SLACK_HOOK=https://hooks.slack.com/... \
-  justwatch/github-releases-notifier \
+  xrstf/github-releases-notifier \
     -r=kubernetes/kubernetes
 ```
 

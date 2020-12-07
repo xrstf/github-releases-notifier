@@ -20,7 +20,7 @@ spec:
         runAsUser: 1000
       containers:
       - name: github-releases-notifier
-        image: justwatch/github-releases-notifier
+        image: xrstf/github-releases-notifier
         env:
         - name: GITHUB_TOKEN
           valueFrom:
@@ -36,12 +36,8 @@ spec:
         - '/bin/github-releases-notifier'
         args:
         - '-r=golang/go'
-        - '-r=justwatchcom/elasticsearch_exporter'
-        - '-r=justwatchcom/gopass'
-        - '-r=justwatchcom/sql_exporter'
         - '-r=kubernetes/minikube'
         - '-r=prometheus/prometheus'
-        - '-r=shurcooL/githubql'
         resources:
           limits:
             cpu: 100m
@@ -49,4 +45,3 @@ spec:
           requests:
             cpu: 25m
             memory: 64Mi
-      restartPolicy: Always
